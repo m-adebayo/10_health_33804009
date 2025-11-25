@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS fresh_forks;
-USE fresh_forks
+CREATE DATABASE IF NOT EXISTS health;
+USE health
 
 CREATE TABLE IF NOT EXISTS meals (
     id  INT AUTO_INCREMENT,
@@ -9,3 +9,5 @@ CREATE TABLE IF NOT EXISTS meals (
     recipe TEXT, 
     PRIMARY KEY(id)
 );
+
+GRANT ALL PRIVILEGES ON health.* TO ' health_app'@'localhost';

@@ -1,0 +1,26 @@
+<!-- views/addmeal.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Meal</title>
+</head>
+<body>
+    <h1>Add a New Meal</h1>
+    <form action="/meals/mealadded" method="POST">
+        <label for="name">Meal Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label for="ingredients">Ingredients:</label><br>
+        <textarea id="ingredients" name="ingredients"></textarea><br><br>
+
+        <label for="recipe">Recipe:</label><br>
+        <textarea id="recipe" name="recipe"></textarea><br><br>
+
+        <button type="submit">Add Meal</button>
+    </form>
+</body>
+</html>

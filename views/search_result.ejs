@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results for "<%= searchTerm %>"</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <h1>Search Results for "<%= searchTerm %>"</h1>
+
+    <% if (meals.length === 0) { %>
+        <p>No meals found.</p>
+    <% } else { %>
+        <% meals.forEach(meal => { %>
+            <div class="meal">
+                <h2><%= meal.name %></h2>
+                <p><strong>Description:</strong> <%= meal.description %></p>
+                <p><strong>Ingredients:</strong> <%= meal.ingredients %></p>
+                <p><strong>Recipe:</strong> <%= meal.recipe %></p>
+            </div>
+        <% }) %>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FreshForks - All Recipes</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <h1>All Recipes</h1>
+    <% if (listedMeals.length === 0) { %>
+        <p>No meals available.</p>
+    <% } else { %>
+        <% listedMeals.forEach(meal => { %>
+            <div class="meal">
+                <h2><%= meal.name %></h2>
+                <p><strong>Description:</strong> <%= meal.description %></p>
+                <p><strong>Ingredients:</strong> <%= meal.ingredients %></p>
+                <p><strong>Recipe:</strong> <%= meal.recipe %></p>
+            </div>
+        <% }) %>
+    <% } %>
+</body>
+</html>

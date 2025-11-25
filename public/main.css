@@ -1,0 +1,77 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+
+h1 {
+    text-align: center;
+    color: #2a7a4f;
+    background-color: #ffffff;
+    padding: 25px 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Index page links/buttons */
+a {
+    display: inline-block;
+    margin: 10px 5px;
+    text-decoration: none;
+    background-color: #3b9b6b;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    background-color: #2a7a4f;
+    transform: scale(1.05);
+}
+
+/* Meals list cards - updated to match homepage style */
+.meal {
+    border: 1px solid #3b9b6b;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #f0fff4; /* soft greenish background */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+/* Hover effect for cards */
+.meal:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Meal title */
+.meal h2 {
+    margin: 0 0 10px;
+    color: #2a7a4f;
+    font-size: 1.5em;
+}
+
+/* Paragraphs inside meal cards */
+.meal p {
+    margin: 6px 0;
+    color: #333;
+}
+
+/* Strong labels for meal info */
+.meal strong {
+    color: #2c3e50;
+}
+
+/* Add spacing for ingredients and recipe */
+.meal .ingredients,
+.meal .recipe {
+    margin-top: 10px;
+}

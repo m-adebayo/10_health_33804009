@@ -20,6 +20,19 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Define our application-specific data
 app.locals.siteData = {siteName: "FreshForks"}
 
+// Define the database connection pool
+const db = mysql.createPool({
+    host: 'localhost',
+    user: 'health_app',
+    password: 'qwertyuiop',
+    database: 'health',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+});
+global.db = db;
+
+
 // Load the route handlers
 const mainRoutes = require("./routes/main")
 app.use('/', mainRoutes)
@@ -28,7 +41,7 @@ app.use('/', mainRoutes)
 const usersRoutes = require('./routes/users')
 app.use('/users', usersRoutes)
 
-// Load the route handlers for /books
+// Load the route handlers for /meals
 const mealsRoutes = require('./routes/meals')
 app.use('/meals', mealsRoutes)
 
