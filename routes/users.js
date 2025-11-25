@@ -5,10 +5,12 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
+//Registration
 router.get('/register', function (req, res, next) {
     res.render('register.ejs')
 })
 
+//After Registration
 router.post('/registered', function (req, res, next) {
     const username = req.body.username
     const first = req.body.first
@@ -36,6 +38,43 @@ router.post('/registered', function (req, res, next) {
         });        
     });
 }); 
+
+//Log In
+router.get('/login', function (req, res, next) {
+    res.render('login.ejs')
+})
+
+//After Log In
+router.post('/loggedin', function (req, res, next) {
+    const username = req.body.username
+    const plainPassword = req.body.password
+
+    let sqlquery = "SELECT * FROM users WHERE username = ?"
+
+    db.query(sqlquery, [username], (err, result) => {
+        if (err) return next(err)
+
+        // No user found
+        if (result.length === 0) {
+            return res.send("Login failed: Username not found.")
+        }
+
+        const hashedPassword = result[0].password
+
+        // Compare password supplied with hashed password in the database
+        bcrypt.compare(plainPassword, hashedPassword, function(err, same) {
+            if (err) return next(err)
+
+            if (same === true) {
+                res.send("Login successful! Welcome back, " + username + "!")
+            } else {
+                res.send("Login failed: Incorrect password.")
+            }
+        })
+    })
+})
+
+
 
 // Export the router object so index.js can access it
 module.exports = router

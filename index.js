@@ -3,6 +3,7 @@ var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
 var mysql = require('mysql2')
+require('dotenv').config();
 
 // Create the express application object
 const app = express()
@@ -22,10 +23,10 @@ app.locals.siteData = {siteName: "FreshForks"}
 
 // Define the database connection pool
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'health_app',
-    password: 'qwertyuiop',
-    database: 'health',
+    host: process.env.HEALTH_HOST,
+    user: process.env.HEALTH_USER,
+    password: process.env.HEALTH_PASSWORD,
+    database: process.env.HEALTH_DATABASE,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
