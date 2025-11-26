@@ -3,7 +3,9 @@ const express = require("express");
 const { console } = require("inspector");
 const router = express.Router()
 
-router.get('/search',function(req, res, next){
+const redirectLogin = (req,res,next) => req.app.locals.redirectLogin(req,res,next);
+
+router.get('/search', redirectLogin, function(req, res, next){
     res.render("search.ejs")
 });
 
@@ -24,7 +26,7 @@ router.get('/search_result', function (req, res, next) {
     });
 });
 
-    router.get('/list', function(req, res, next) {
+    router.get('/list', redirectLogin, function(req, res, next) {
         let sqlquery = "SELECT * FROM meals"; 
         db.query(sqlquery, (err, result) => {
             if (err) {
@@ -35,7 +37,7 @@ router.get('/search_result', function (req, res, next) {
     });
 
 // Show the add meal page
-router.get('/addmeal', (req, res) => {
+router.get('/addmeal', redirectLogin, (req, res) => {
     res.render('addmeal'); // render the EJS form
 });
 

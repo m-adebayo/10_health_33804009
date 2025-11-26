@@ -5,6 +5,8 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
+const redirectLogin = (req,res,next) => req.app.locals.redirectLogin(req,res,next);
+
 //Registration
 router.get('/register', function (req, res, next) {
     res.render('register.ejs')
