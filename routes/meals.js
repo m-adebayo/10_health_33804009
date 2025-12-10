@@ -26,7 +26,7 @@ router.get('/search_result', function (req, res, next) {
     });
 });
 
-    router.get('/list', redirectLogin, function(req, res, next) {
+    router.get('/list', function(req, res, next) {
         let sqlquery = "SELECT * FROM meals"; 
         db.query(sqlquery, (err, result) => {
             if (err) {

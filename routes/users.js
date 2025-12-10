@@ -58,7 +58,7 @@ router.post('/loggedin', function (req, res, next) {
 
         // No user found
         if (result.length === 0) {
-            return res.send("Login failed: Username not found.")
+               return res.send('Login failed: Username not found.<a href='+'/users/login'+'>Return To Login</a>')
         }
 
         const hashedPassword = result[0].password
@@ -68,13 +68,29 @@ router.post('/loggedin', function (req, res, next) {
             if (err) return next(err)
 
             if (same === true) {
-                res.send("Login successful! Welcome back, " + username + "!")
+                req.session.userId = req.body.username;
+                return res.send(`
+                    <h2> Login Successful! Welcome back ${username}</h2>
+                    <a href = "/">
+                        <button> Return to Home</button>
+                    </a>
+                `)
             } else {
-                res.send("Login failed: Incorrect password.")
+                return res.send('Login failed: Incorrect password.<a href='+'/users/login'+'>Return To Login</a>')
             }
         })
     })
 })
+
+//Logout
+router.get('/logout', redirectLogin, (req,res) => {
+    req.session.destroy(err => {
+        if (err) {
+          return res.redirect('/')
+        }
+        res.send('You are now logged out. <a href='+'/'+'>Home</a>');
+        })
+    })
 
 
 
