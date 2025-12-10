@@ -27,7 +27,7 @@ app.use(session({
 
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId ) {
-      res.redirect('../users/login') // redirect to the login page
+      res.redirect('/users/login') // redirect to the login page
     } else { 
         next (); // move to the next middleware function
     } 
@@ -36,6 +36,7 @@ const redirectLogin = (req, res, next) => {
 app.locals.redirectLogin = redirectLogin;
 
 app.use((req, res, next) => {
+    res.locals.username = req.session.username || null;
     res.locals.userId = req.session.userId || null;
     next();
 });

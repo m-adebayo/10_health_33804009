@@ -68,13 +68,9 @@ router.post('/loggedin', function (req, res, next) {
             if (err) return next(err)
 
             if (same === true) {
-                req.session.userId = req.body.username;
-                return res.send(`
-                    <h2> Login Successful! Welcome back ${username}</h2>
-                    <a href = "/">
-                        <button> Return to Home</button>
-                    </a>
-                `)
+                req.session.username = result[0].username;
+                req.session.userId = result[0].id;
+                return res.render("login_success.ejs", { username: username });
             } else {
                 return res.send('Login failed: Incorrect password.<a href='+'/users/login'+'>Return To Login</a>')
             }

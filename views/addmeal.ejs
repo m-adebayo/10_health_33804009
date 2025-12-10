@@ -1,26 +1,37 @@
-<!-- views/addmeal.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Meal</title>
+    <title>Add Meal - FreshForks</title>
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
+
     <h1>Add a New Meal</h1>
-    <form action="/meals/mealadded" method="POST">
-        <label for="name">Meal Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description"></textarea><br><br>
+    <div class="form-container">
 
-        <label for="ingredients">Ingredients:</label><br>
-        <textarea id="ingredients" name="ingredients"></textarea><br><br>
+        <form action="/meals/mealadded" method="POST">
 
-        <label for="recipe">Recipe:</label><br>
-        <textarea id="recipe" name="recipe"></textarea><br><br>
+            <label for="name">Meal Name:</label>
+            <input type="text" id="name" name="name" required>
 
-        <button type="submit">Add Meal</button>
-    </form>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="3"></textarea>
+
+            <label for="ingredients">Ingredients:</label>
+            <textarea id="ingredients" name="ingredients" rows="4"></textarea>
+
+            <label for="recipe">Recipe:</label>
+            <textarea id="recipe" name="recipe" rows="5"></textarea>
+
+            <button type="submit" class="btn">Add Meal</button>
+        </form>
+
+        <a href="/meals/list" class="btn">Back to All Meals</a>
+        <a href="/" class="btn">Back to Home</a>
+
+    </div>
+
 </body>
 </html>

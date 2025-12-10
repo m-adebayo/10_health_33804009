@@ -29,12 +29,12 @@ a {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/*Meal Page */
 a:hover {
     background-color: #2a7a4f;
     transform: scale(1.05);
 }
 
-/* Meals list cards - updated to match homepage style */
 .meal {
     border: 1px solid #3b9b6b;
     padding: 20px;
@@ -46,31 +46,26 @@ a:hover {
     text-align: left;
 }
 
-/* Hover effect for cards */
 .meal:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Meal title */
 .meal h2 {
     margin: 0 0 10px;
     color: #2a7a4f;
     font-size: 1.5em;
 }
 
-/* Paragraphs inside meal cards */
 .meal p {
     margin: 6px 0;
     color: #333;
 }
 
-/* Strong labels for meal info */
 .meal strong {
     color: #2c3e50;
 }
 
-/* Add spacing for ingredients and recipe */
 .meal .ingredients,
 .meal .recipe {
     margin-top: 10px;
@@ -116,4 +111,64 @@ form input[type="password"] {
 
 .btn:hover {
     background-color: #2a7a4f;
+}
+
+/*Meal Details Page*/
+.detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.detail-card {
+    border: 1px solid #3b9b6b;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.detail-card h2 {
+    color: #2a7a4f;
+    margin-top: 0;
+}
+
+.review-box {
+    background: #f0fff4;
+    border-left: 4px solid #3b9b6b;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    border-radius: 6px;
+    border: 1px solid #3b9b6b;
+    font-size: 14px;
+}
+
+.textarea {
+    height: 90px;
+}
+
+.avg-rating {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #2a7a4f;
+}
+
+.alert-success {
+    background-color: #c8f7d4;
+    color: #2a7a4f;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 600px;
+    border: 1px solid #3b9b6b;
+    font-weight: bold;
+    text-align: center;
 }

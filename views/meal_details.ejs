@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= meal.name %> - FreshForks</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+    <% if (typeof successMessage !== 'undefined' && successMessage) { %>
+    <div class="alert-success"><%= successMessage %></div>
+<% } %>
+    <h1><%= meal.name %></h1>
+
+    <div class="detail-container">
+
+        <div class="detail-card">
+            <h2>Meal Details</h2>
+            <p><strong>Description:</strong> <%= meal.description %></p>
+            <p><strong>Ingredients:</strong> <%= meal.ingredients %></p>
+            <p><strong>Recipe:</strong> <%= meal.recipe %></p>
+        </div>
+
+        <div class="detail-card">
+            <h2>Average Rating</h2>
+            <% if (avgRating !== null) { %>
+                <p class="avg-rating"><%= avgRating.toFixed(1) %> / 5 ⭐</p>
+            <% } else { %>
+                <p>No ratings yet.</p>
+            <% } %>
+        </div>
+
+        <div class="detail-card">
+            <h2>User Reviews</h2>
+
+            <% if (ratings.length === 0) { %>
+                <p>No reviews yet.</p>
+            <% } else { %>
+                <% ratings.forEach(r => { %>
+                    <div class="review-box">
+                        <p><strong>User:</strong> <%= r.username %></p>
+                        <p><strong>Rating:</strong> <%= r.rating %> ⭐</p>
+                        <% if (r.comment) { %>
+                            <p><strong>Comment:</strong> <%= r.comment %></p>
+                        <% } %>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+
+        <div class="detail-card">
+            <h2>Leave Your Rating</h2>
+
+            <form action="/meals/rate/<%= meal.id %>" method="POST">
+                <label for="rating">Rating (1-5):</label>
+                <input class="input" type="number" name="rating" min="1" max="5" required>
+
+                <label for="comment">Comment (optional):</label>
+                <textarea class="input textarea" name="comment"></textarea>
+
+                <button type="submit" class="btn">Submit Rating</button>
+            </form>
+        </div>
+
+        <a href="/meals/list" class="btn"> Back to All Meals</a>
+
+    </div>
+
+<script>
+    const alert = document.querySelector(".alert-success");
+    if (alert) {
+        setTimeout(() => {
+            alert.style.opacity = "0";
+            alert.style.transition = "opacity 0.5s ease";
+            setTimeout(() => alert.remove(), 500);
+        }, 3000);
+    }
+</script>
+</body>
+</html>

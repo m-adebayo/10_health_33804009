@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal Added</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="card">
+            <h1 class="title">Meal Added Successfully!</h1>
+
+            <p class="success-text">
+                Your new meal has been added to the database.
+            </p>
+
+            <div class="meal-summary">
+                <h3>Meal Summary</h3>
+                <p><strong>Name:</strong> <%= name %></p>
+                <p><strong>Description:</strong> <%= description %></p>
+                <p><strong>Ingredients:</strong> <%= ingredients %></p>
+                <p><strong>Recipe:</strong> <%= recipe %></p>
+            </div>
+
+            <div class="actions">
+                <a href="/meals/addmeal" class="button">Add Another Meal</a>
+                <a href="/meals/list" class="button alt">View All Meals</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

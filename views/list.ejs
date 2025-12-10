@@ -6,12 +6,13 @@
 </head>
 <body>
     <h1>All Recipes</h1>
+    <a href="/" class="btn">Back to Home</a>
     <% if (listedMeals.length === 0) { %>
         <p>No meals available.</p>
     <% } else { %>
         <% listedMeals.forEach(meal => { %>
             <div class="meal">
-                <h2><%= meal.name %></h2>
+                <h2><a href="/meals/<%= meal.id %>"><%= meal.name %></a></h2>
                 <p><strong>Description:</strong> <%= meal.description %></p>
                 <p><strong>Ingredients:</strong> <%= meal.ingredients %></p>
                 <p><strong>Recipe:</strong> <%= meal.recipe %></p>

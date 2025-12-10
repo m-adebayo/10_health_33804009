@@ -21,3 +21,14 @@ CREATE TABLE IF NOT EXISTS users (
     password    VARCHAR(255)
     PRIMARY KEY(id)
 );
+
+CREATE TABLE IF NOT EXISTS ratings (
+    id        INT AUTO_INCREMENT,
+    user_id   INT,
+    meal_id   INT,
+    rating    INT CHECK (rating BETWEEN 1 AND 5),
+    comment   TEXT,
+    PRIMARY KEY(id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (meal_id) REFERENCES meals(id)
+);

@@ -50,18 +50,81 @@ router.post('/mealadded', (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            res.send('This meal is added to the database! <br>' +
-                     'Name: ' + req.body.name + '<br>' +
-                     'Description: ' + req.body.description + '<br>' +
-                     'Ingredients: ' + req.body.ingredients + '<br>' +
-                     'Recipe: ' + req.body.recipe);
-        }
+            res.render("meal_added.ejs", {
+                name: req.body.name,
+                description: req.body.description,
+                ingredients: req.body.ingredients,
+                recipe: req.body.recipe
+            });        }
     });
 });
 
-module.exports = router;
+router.get('/:meal_id', function(req, res, next) {
+    const meal_id = req.params.meal_id;
 
+    const mealSql = "SELECT * FROM meals WHERE id = ?";
+    const ratingsSql = `
+        SELECT ratings.*, users.username
+        FROM ratings
+        JOIN users ON ratings.user_id = users.id
+        WHERE meal_id = ?
+    `;
+    const avgSql = "SELECT AVG(rating) AS avgRating FROM ratings WHERE meal_id = ?";
 
+    db.query(mealSql, [meal_id], (err, mealResult) => {
+        if (err) return next(err);
+        if (mealResult.length === 0) {
+            return res.send("Meal not found.");
+        }
+
+        db.query(ratingsSql, [meal_id], (err, ratingsResult) => {
+            if (err) return next(err);
+
+            db.query(avgSql, [meal_id], (err, avgResult) => {
+                if (err) return next(err);
+
+                let avgRating = avgResult[0].avgRating;
+
+                if (avgRating !== null){
+                    avgRating = Number (avgRating);
+                }
+                res.render("meal_details.ejs", {
+                    meal: mealResult[0],
+                    ratings: ratingsResult,
+                    avgRating: avgRating,
+                    successMessage: req.session.successMessage || null
+                });
+            });
+        });
+    });
+});
+
+router.post('/rate/:meal_id', redirectLogin, (req,res,next) => {
+    const meal_id = req.params.meal_id;
+    const user_id = req.session.userId;
+    const rating = parseInt(req.body.rating);
+    const comment = req.body.comment || null;
+
+    if (!rating || rating < 1 || rating > 5){
+        return res.send("Rating must be a number from  1-5.")
+    }
+
+    const sql = `INSERT INTO ratings (user_id, meal_id, rating, comment)
+                VALUES(?,?,?,?)
+                ON DUPLICATE KEY UPDATE
+                rating = VALUES(rating),
+                comment = VALUES(comment),
+                updated_at = CURRENT_TIMESTAMP
+                `;
+    
+    const params = [user_id, meal_id, rating, comment];
+    db.query(sql,params,(err,result) => {
+        if (err) return next (err);
+
+    req.session.successMessage = "Your rating has been saved!";
+    res.redirect("/meals/" + meal_id);
+    })
+})
 
 // Export the router object so index.js can access it
 module.exports = router
