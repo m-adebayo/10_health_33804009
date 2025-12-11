@@ -1,0 +1,5 @@
+home=https://www.doc.gold.ac.uk/usr/412/
+about=https://www.doc.gold.ac.uk/usr/412/about
+find_meal=https://doc.gold.ac.uk/usr/412/meals/search
+add_meal=https://doc.gold.ac.uk/usr/412/meals/addmeal
+chatbot=https://doc.gold.ac.uk/usr/412/chat
