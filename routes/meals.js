@@ -122,8 +122,7 @@ router.post('/:meal_id/rate', redirectLogin, (req,res,next) => {
         if (err) return next (err);
 
     req.session.successMessage = "Your rating has been saved!";
-    res.redirect("/meals/" + meal_id);
-    })
+    res.redirect(req.app.locals.BASE_PATH + "/meals/" + meal_id);    })
 })
 
 // Export the router object so index.js can access it
