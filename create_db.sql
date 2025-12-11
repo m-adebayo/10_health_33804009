@@ -32,3 +32,6 @@ CREATE TABLE IF NOT EXISTS ratings (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (meal_id) REFERENCES meals(id)
 );
+
+ALTER TABLE meals
+ADD CONSTRAINT unique_meal_name UNIQUE (name);

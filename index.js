@@ -27,7 +27,7 @@ app.use(session({
 
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId ) {
-      res.redirect('/users/login') // redirect to the login page
+      return res.redirect(process.env.HEALTH_BASE_PATH + '/users/login') // redirect to the login page
     } else { 
         next (); // move to the next middleware function
     } 
