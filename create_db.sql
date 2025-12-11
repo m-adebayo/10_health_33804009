@@ -23,14 +23,18 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS ratings (
-    id        INT AUTO_INCREMENT,
-    user_id   INT,
-    meal_id   INT,
-    rating    INT CHECK (rating BETWEEN 1 AND 5),
-    comment   TEXT,
-    PRIMARY KEY(id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (meal_id) REFERENCES meals(id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    meal_id INT NOT NULL,
+    rating TINYINT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY ux_user_meal (user_id, meal_id),
+
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (meal_id) REFERENCES meals(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 ALTER TABLE meals
