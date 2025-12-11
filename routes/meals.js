@@ -99,7 +99,7 @@ router.get('/:meal_id', function(req, res, next) {
     });
 });
 
-router.post('/rate/:meal_id', redirectLogin, (req,res,next) => {
+router.post('/:meal_id/rate', redirectLogin, (req,res,next) => {
     const meal_id = req.params.meal_id;
     const user_id = req.session.userId;
     const rating = parseInt(req.body.rating);
