@@ -1,4 +1,7 @@
-// Import express and ejs
+
+globalThis.fetch = (...args) =>
+    import('node-fetch').then(({ default: fetch }) => fetch(...args));
+
 var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
