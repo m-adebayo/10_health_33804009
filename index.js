@@ -16,6 +16,7 @@ app.set('view engine', 'ejs')
 
 // Set up the body parser 
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 
 app.use(session({
     secret: 'somerandomstuff',
@@ -75,6 +76,10 @@ app.use('/users', usersRoutes)
 // Load the route handlers for /meals
 const mealsRoutes = require('./routes/meals')
 app.use('/meals', mealsRoutes)
+
+//Load the route handlers for /chat
+const chatRoutes = require('./routes/chat');
+app.use('/chat', chatRoutes);
 
 // Start the web app listening
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
