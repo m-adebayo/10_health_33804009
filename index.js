@@ -9,6 +9,7 @@ var session = require('express-session')
 // Create the express application object
 const app = express()
 const port = 8000
+app.locals.BASE_PATH = process.env.HEALTH_BASE_PATH || "";
 
 // Tell Express that we want to use EJS as the templating engine
 app.set('view engine', 'ejs')
