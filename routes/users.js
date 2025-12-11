@@ -34,10 +34,8 @@ router.post('/registered', function (req, res, next) {
         }
 
     // saving data in database
-            res.send(
-                'Hello ' + first + ' ' + last + 
-                '! You are now registered. We will send an email to ' + email); 
-        });        
+        res.render("register_success.ejs")
+       });        
     });
 }); 
 
