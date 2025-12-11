@@ -50,7 +50,7 @@
         <div class="detail-card">
             <h2>Leave Your Rating</h2>
 
-            <form action="<%= BASE_PATH %>/meals/rate/<%= meal.id %>" method="POST">
+            <form action=req.app.locals.BASE_PATH + "/meals/" + meal.id %>" method="POST">
                 <label for="rating">Rating (1-5):</label>
                 <input class="input" type="number" name="rating" min="1" max="5" required>
 
