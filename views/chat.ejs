@@ -39,7 +39,7 @@ form.addEventListener("submit", async (e) => {
     addMessage("user", text);
     input.value = "";
 
-    const res = await fetch("/chat/ask", {
+    const res = await fetch("<%= BASE_PATH %>/chat/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text })

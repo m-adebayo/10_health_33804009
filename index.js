@@ -2,11 +2,12 @@
 globalThis.fetch = (...args) =>
     import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
+require('dotenv').config();
+
 var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
 var mysql = require('mysql2')
-require('dotenv').config();
 var session = require('express-session')
 
 // Create the express application object
